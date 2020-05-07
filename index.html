@@ -1,7 +1,9 @@
 ---
 layout: default
 title: "SCS: Self-Contained Systems"
+description: Self-contained Systems (SCS) is a software architecture focused on a separation into independent systems - similar to microservices
 ---
+
 <h2>Introduction</h2>
 
 <p>The Self-contained System (SCS) approach is an architecture that
@@ -13,21 +15,35 @@ Over the past few years, we have seen its benefits in many mid-sized
 and large-scale projects.</p>
 
 <p>The idea is to break a large system apart into several smaller
-self-contained system, or SCSs, that follow certain rules.<p>
+self-contained systems, or SCSs, that follow certain rules.<p>
 
 <script async class="speakerdeck-embed" data-id="e74a068d06a949cdb358a55ca17d2dc5" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>
+  <a href="https://speakerdeck.com/rstrangh/self-contained-systems-1">English
+    Info Deck</a>
+  <a href="slidedeck/en/scs-infodeck-english.key">Keynote</a>
+  <a href="slidedeck/en/scs-infodeck-english.ppt">PowerPoint</a>
+</p>
+
+<p>
+  <a href="https://speakerdeck.com/rstrangh/self-contained-systems-german">German
+    Info Deck</a>
+  <a href="slidedeck/de/scs-infodeck-deutsch.key">Keynote</a>
+  <a href="slidedeck/de/scs-infodeck-deutsch.ppt">PowerPoint</a>
+</p>
 
 <h2 id="scs-characteristics">SCS Characteristics</h2>
 <ol>
 
 	<li id="autonomous">Each SCS is an <a href="#autonomous">autonomous web
-	application</a>. For the SCS's domain all data, the logic to process that data and
+	application</a>. For the SCS's domain, all data, the logic to process that data and
 	all code to render the web interface is contained within the
 	SCS. An SCS can fulfill its primary use cases on its own,
 	without having to rely on other systems being available.</li>
 
 	<li id="one-team">Each SCS is owned by <a href="#one-team">one team</a>. This
-	does not necessarily mean that only one team might change the
+	does not necessarily mean that only one team can change the
 	code, but the owning team has the final say on what goes
 	into the code base, for example by merging pull-requests.</li>
 
@@ -42,7 +58,7 @@ self-contained system, or SCSs, that follow certain rules.<p>
 	synchronous, e.g. by replicating data or buffering requests.</li>
 
 	<li id="optional-api">An SCS can have an <a href="#optional-api">optional service
-	API</a>. Because the SCS has its own web UI it can
+	API</a>. Because the SCS has its own web UI, it can
 	interact with the user &mdash; without going through a UI
 	service. However, an API for mobile clients or for other SCSs
 	might still be useful.</li>
@@ -53,7 +69,7 @@ self-contained system, or SCSs, that follow certain rules.<p>
 	must therefore include both.</li>
 
 	<li id="no-shared-ui">An SCS should make its features usable
-	to end-users by its own UI. Therefore the SCS should have
+	to end-users via its own UI. Therefore the SCS should have
 	<a href="#no-shared-ui">no shared UI</a> with other SCSs. SCSs might still have
 	links to each other. However, <a href="#no-sync">asynchronous
 	integration</a> means that the SCS should still work even if
@@ -64,4 +80,10 @@ self-contained system, or SCSs, that follow certain rules.<p>
 	<a href="#no-code-sharing">share no business code</a> with other SCSs. It might be fine to
 	create a pull-request for an SCS or use common libraries,
 	e.g. database drivers or oAuth clients.</li>
+	
+	<li id="minimize-shared-infrastructure">To make SCSs more robust and improve
+	decoupling <a href="#avoid-common-infrastructure">shared infrastructure can be minimized</a>.
+	E.g. a shared database make fail safeness and scalability of the SCSs
+	depend on the central database. However, due to e.g. costs a shared database with separate
+	schemas or data models per SCS can be a valid alternative. </li>
 </ol>
